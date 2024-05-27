@@ -254,8 +254,8 @@ namespace ModShardLauncher
             if (Data.Code.All(x => x.Name.Content != "createHookObj"))
                 Msl.AddInnerFunction("createHookObj");
             
-            if (Data.Extensions.All(x => x.Name.Content != "display_mouse_lock"))
-                throw new InvalidOperationException("The display_mouse_lock extension is not found.");
+            //if (Data.Extensions.All(x => x.Name.Content != "display_mouse_lock"))
+            //    throw new InvalidOperationException("The display_mouse_lock extension is not found.");
             if (Data.Extensions.First(x => x.Name.Content == "display_mouse_lock")
                 .Files.All(x => x.Filename.Content != "ModShard.dll"))
                 AddExtension(new ModShard());
