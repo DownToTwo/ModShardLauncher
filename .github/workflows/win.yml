@@ -1,0 +1,34 @@
+name: Build and Publish Windows .NET App
+
+on:
+  push:
+    branches:
+      - DownToTwo-patch-1
+  pull_request:
+    branches:
+      - DownToTwo-patch-1
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x' # Specify the desired .NET SDK version
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build and Publish
+      run: dotnet publish --configuration Release --output ./publish-windows
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-artifacts
+        path: ./publish-windows
