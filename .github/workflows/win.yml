@@ -24,8 +24,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build and Publish
-      run: dotnet publish --configuration Release --output ./publish-windows
+    - name: Build with msbuild
+      run: msbuild YourProject.csproj /p:Configuration=Release /p:OutputPath=./publish-windows
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
