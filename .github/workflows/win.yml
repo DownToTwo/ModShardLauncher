@@ -20,12 +20,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x' # Specify the desired .NET SDK version
-
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build with msbuild
-      run: msbuild YourProject.csproj /p:Configuration=Release /p:OutputPath=./publish-windows
+      run: msbuild ModShardLauncher.csproj /p:Configuration=Release /p:OutputPath=./publish-windows
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
