@@ -24,7 +24,10 @@ jobs:
       uses: microsoft/setup-msbuild@v2
     - name: Restore dependencies
       run: dotnet restore
-
+    - name: Choco help
+      uses: crazy-max/ghaction-chocolatey@v3
+      with:
+        args: install mono --yes
     - name: Build with msbuild
       run: msbuild ModShardLauncher.csproj /p:Configuration=Release /p:OutputPath=./publish-windows
 
